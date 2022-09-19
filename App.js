@@ -1,15 +1,17 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import './App.css';
+
 import {db} from "./firebase-config";
 import { collection, getDocs } from 'firebase/firestore';
+
+
 import lit from './lit.ts';
+
 
 function App() {
 
-const upload = async(imgURL, mp3URL) => {
 
-async function storeNFT() {
-  
   const [encryptMp3, setEncryptMp3] = useState('');
   const [encryptBase64, setEncryptBase64] = useState('');
   const [song, setSong] = useState([]);
@@ -38,33 +40,41 @@ const onClick = async (id) => {
   
 };
 
-  const url = await fetch("file url")
+const upload = async(imgURL, mp3URL) => {
+
+async function storeNFT() {
+
+  const url = await fetch(imgURL)
   const imgData = await url.blob()
   const image = new File(
     [imgData],
-    'image name',
+    'Blue Faces.png',
     {type: 'image/png'}
   );
 
-  const songUrl = await fetch("file url")
+  const songUrl = await fetch(mp3URL)
   const songData = await songUrl.blob()
   const song = new File(
     [songData],
-    'mp3 name',
+    'Blue_Faces.mp3',
     {type: 'audio/mpeg'}
   );
 
 
   const { encryptedFile, encryptedSymmetricKey } = await lit.encrypt(song);
-  console.log(encryptedFile);
+  console.log(encryptedFile)
   console.log(encryptedSymmetricKey)
+}
 
 storeNFT()
+
 };
+
+
+
   return (
     <div className="App">
       <header className="header">
-        <img src={logo} className="logo" alt="logo" />
         <h2>Admin Portal</h2>
       </header>
       <div className='content'>
@@ -99,5 +109,7 @@ storeNFT()
       </div>
     </div>
   );
-} 
+
+}
+
 export default App;
