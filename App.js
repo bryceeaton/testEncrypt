@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import {db} from "./firebase-config";
+import { collection, getDocs } from 'firebase/firestore';
 import lit from './lit.ts';
 
 function App() {
@@ -55,6 +57,7 @@ const onClick = async (id) => {
 
   const { encryptedFile, encryptedSymmetricKey } = await lit.encrypt(song);
   console.log(encryptedFile);
+  console.log(encryptedSymmetricKey)
 
 storeNFT()
 };
