@@ -29,5 +29,6 @@ async function storeNFT() {
   console.log(encryptedFile);
 
 storeNFT()
-
 };
+  
+export default App;
